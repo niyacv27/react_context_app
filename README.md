@@ -1,70 +1,279 @@
-# Getting Started with Create React App
+🌿 React Context API 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is focusing on the useContext hook, Context API, and addressing the problem of props drilling.
+The aim is to demonstrate how global state can be managed cleanly in React without manually passing props between components.
 
-## Available Scripts
+The application includes:
 
-In the project directory, you can run:
+A functional login system
 
-### `npm start`
+Dark/Light theme switching
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+API data fetching using Context
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Global state updates
 
-### `npm test`
+LocalStorage persistence
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Multiple context providers
 
-### `npm run build`
+Props drilling example and context-based solution
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This README gives a full explanation so anyone viewing this repository can understand what the project does.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+🎬 How to Watch the Demo Video
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+GitHub cannot preview large MP4 files directly.
 
-### `npm run eject`
+To view the assignment demonstration video:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Open the folder app_recording
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Click React_context_recording.mp4
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Then click View raw (top-right)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The video will download or stream depending on your browser
 
-## Learn More
+This shows the entire working example of props drilling, context usage, login system, theme switching, and API integration.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+🌐 How to Run This Project
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+To run this app on your computer:
 
-### Code Splitting
+1️⃣ Install Dependencies
+npm install
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+2️⃣ Start the Development Server
+npm start
 
-### Analyzing the Bundle Size
+3️⃣ Open your browser and visit:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+👉 http://localhost:3000
 
-### Making a Progressive Web App
+This is the URL where your React project runs locally.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+1️⃣ Props Drilling – Theory and Code Explanation
+📌 What is Props Drilling?
 
-### Advanced Configuration
+Props drilling occurs when data from a parent component must be passed through several intermediate components that do not need the data, only so the deepest component can use it.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+This creates:
 
-### Deployment
+Unnecessary prop chains
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Hard-to-maintain code
 
-### `npm run build` fails to minify
+Confusing component trees
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Tightly coupled components
+
+📌 Props Drilling Code Example (Used in This Project)
+// Parent.js
+export default function Parent() {
+  const message = "Hello from Parent via props!";
+  return <Middle message={message} />;
+}
+
+// Middle.js
+export default function Middle({ message }) {
+  // Middle does NOT use the message
+  return <DeepChild message={message} />;
+}
+
+// DeepChild.js
+export default function DeepChild({ message }) {
+  return <p>DeepChild got: {message}</p>;
+}
+
+
+In the UI, this is shown in the Props Drilling Example card.
+
+This demonstrates exactly why props drilling is inefficient.
+
+2️⃣ Context Setup (Creating Global State)
+
+A dedicated contexts directory contains:
+
+✔ UserContext.js
+
+Handles:
+
+Login
+
+Logout
+
+User name and email
+
+Update user details
+
+✔ ThemeContext.js
+
+Handles:
+
+Light/Dark theme
+
+Theme toggle logic
+
+✔ ApiUserContext.js
+
+Handles:
+
+Fetching API data
+
+Storing fetched user globally
+
+These contexts wrap <App /> so all components can access shared data without prop passing.
+
+3️⃣ Using useContext to Access Data in Child Components
+
+Instead of passing props manually, components access global state directly:
+
+const { user } = useAuthContext();
+const { theme } = useTheme();
+
+
+Examples of components using context:
+
+Navbar
+
+Profile
+
+Login form
+
+Theme toggle button
+
+API user display
+
+Context solution example
+
+This replaces props drilling with clean, managed global state access.
+
+4️⃣ Fetching API Data Using useEffect + Context
+
+Data is fetched from:
+
+https://jsonplaceholder.typicode.com/users/1
+
+
+The response is stored globally in ApiUserContext and displayed in:
+
+Navbar (name + email)
+
+Footer (company + city)
+
+No props are used — the data comes entirely through context.
+
+5️⃣ Updating Global Data
+
+A profile interface allows users to update their name.
+
+When the name is updated:
+
+The change propagates to all components instantly
+
+Navbar updates
+
+Profile updates
+
+Deep context example updates
+
+This demonstrates global state synchronization.
+
+6️⃣ Mini Project – Login Application
+
+The app includes a complete login system:
+
+✔ Login Form
+
+Takes:
+
+Name
+
+Email
+
+✔ Store User in Context
+
+Logged-in user is stored in global state.
+
+✔ Save User in LocalStorage
+
+User remains logged in even after refreshing the browser.
+
+✔ Profile Page
+
+Shows:
+
+User data
+
+Update name option
+
+✔ Logout Button
+
+Clears:
+
+Context
+
+LocalStorage
+
+This completes the mandatory mini project requirements.
+
+7️⃣ Bonus Features Implemented
+🌗 Dark / Light Theme Toggle
+
+Switches theme globally using ThemeContext.
+
+🧩 Custom Hook: useAuthContext()
+
+A simplified way for components to access user data.
+
+🔀 Multiple Contexts Combined
+
+UserContext, ThemeContext, and ApiUserContext work together across the entire app.
+
+🌍 API Data Displayed in Navbar and Footer
+
+Same API data appears in multiple components using context.
+
+📁 Folder Structure
+react_context_app/
+│
+├── public/
+├── src/
+│   ├── components/
+│   ├── contexts/
+│   │    ├── UserContext.js
+│   │    ├── ThemeContext.js
+│   │    ├── ApiUserContext.js
+│   ├── hooks/
+│   │    ├── useAuthContext.js
+│   ├── App.js
+│   ├── index.js
+│   ├── index.css
+│
+├── app_recording/
+│   ├── React_context_recording.mp4
+│
+└── README.md
+
+🎯 Conclusion
+
+This project demonstrates:
+
+What props drilling is
+
+How Context API solves it
+
+How to manage global state in React
+
+How to use multiple contexts together
+
+How to fetch API data and share it globally
+
+How to create a login system using context
+
+How to persist user data with localStorage
+
+How to implement theme toggling globally
+
+All assignment tasks — including the optional bonus tasks — are completed successfully.
