@@ -1,4 +1,4 @@
-🌿 React Context APP 
+🌿 React Context APP
 
 This project is focusing on the useContext hook, Context API, and addressing the problem of props drilling.
 The aim is to demonstrate how global state can be managed cleanly in React without manually passing props between components.
@@ -21,6 +21,7 @@ Props drilling example and context-based solution
 
 This README gives a full explanation so anyone viewing this repository can understand what the project does.
 
+
 🎬 How to Watch the Demo Video
 
 GitHub cannot preview large MP4 files directly.
@@ -37,6 +38,7 @@ The video will download or stream depending on your browser
 
 This shows the entire working example of props drilling, context usage, login system, theme switching, and API integration.
 
+
 🌐 How to Run This Project
 
 To run this app on your computer:
@@ -52,6 +54,7 @@ npm start
 👉 http://localhost:3000
 
 This is the URL where your React project runs locally.
+
 
 1️⃣ Props Drilling – Theory and Code Explanation
 📌 What is Props Drilling?
@@ -91,6 +94,7 @@ In the UI, this is shown in the Props Drilling Example card.
 
 This demonstrates exactly why props drilling is inefficient.
 
+
 2️⃣ Context Setup (Creating Global State)
 
 A dedicated contexts directory contains:
@@ -125,6 +129,7 @@ Storing fetched user globally
 
 These contexts wrap <App /> so all components can access shared data without prop passing.
 
+
 3️⃣ Using useContext to Access Data in Child Components
 
 Instead of passing props manually, components access global state directly:
@@ -148,6 +153,7 @@ API user display
 Context solution example
 
 This replaces props drilling with clean, managed global state access.
+
 
 4️⃣ Fetching API Data Using useEffect + Context
 
@@ -179,6 +185,7 @@ Profile updates
 Deep context example updates
 
 This demonstrates global state synchronization.
+
 
 6️⃣ Mini Project – Login Application
 
@@ -218,6 +225,7 @@ LocalStorage
 
 This completes the mandatory mini project requirements.
 
+
 7️⃣ Bonus Features Implemented
 🌗 Dark / Light Theme Toggle
 
@@ -227,6 +235,7 @@ Switches theme globally using ThemeContext.
 
 A simplified way for components to access user data.
 
+
 🔀 Multiple Contexts Combined
 
 UserContext, ThemeContext, and ApiUserContext work together across the entire app.
@@ -234,6 +243,7 @@ UserContext, ThemeContext, and ApiUserContext work together across the entire ap
 🌍 API Data Displayed in Navbar and Footer
 
 Same API data appears in multiple components using context.
+
 
 📁 Folder Structure
 react_context_app/
@@ -256,6 +266,7 @@ react_context_app/
 │
 └── README.md
 
+
 🎯 Conclusion
 
 This project demonstrates:
@@ -275,5 +286,3 @@ How to create a login system using context
 How to persist user data with localStorage
 
 How to implement theme toggling globally
-
-All assignment tasks — including the optional bonus tasks — are completed successfully.
