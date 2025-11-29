@@ -72,6 +72,8 @@ Confusing component trees
 Tightly coupled components
 
 📌 Props Drilling Code Example (Used in This Project)
+
+
 // Parent.js
 export default function Parent() {
   const message = "Hello from Parent via props!";
