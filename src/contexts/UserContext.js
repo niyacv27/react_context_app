@@ -3,18 +3,18 @@ import React, { createContext, useState, useEffect } from "react";
 export const UserContext = createContext();
 
 export function UserProvider({ children }) {
-  // BONUS: load user from localStorage on first render
+  
   const [user, setUser] = useState(() => {
     const stored = localStorage.getItem("authUser");
     return stored ? JSON.parse(stored) : null;
   });
 
-  // For API user data
+  
   const [apiUser, setApiUser] = useState(null);
   const [loadingApiUser, setLoadingApiUser] = useState(true);
   const [apiError, setApiError] = useState(null);
 
-  // Fetch API user once on mount
+  
   useEffect(() => {
     async function fetchApiUser() {
       try {
@@ -38,7 +38,7 @@ export function UserProvider({ children }) {
     fetchApiUser();
   }, []);
 
-  // Save or clear user from localStorage when it changes
+  
   useEffect(() => {
     if (user) {
       localStorage.setItem("authUser", JSON.stringify(user));

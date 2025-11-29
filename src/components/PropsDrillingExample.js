@@ -1,11 +1,11 @@
 import React from "react";
 
-// DeepChild actually uses the data
+
 function DeepChild({ message }) {
   return <p>DeepChild got: {message}</p>;
 }
 
-// Middle gets message as prop but doesn't use it – just passes it down
+
 function Middle({ message }) {
   return (
     <div>
@@ -17,7 +17,7 @@ function Middle({ message }) {
   );
 }
 
-// Parent starts the chain
+
 function Parent({ message }) {
   return (
     <div className="card">
