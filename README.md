@@ -71,18 +71,21 @@ Unnecessary prop chains make the component tree harder to understand
 The following code demonstrates how data flows unnecessarily through the component hierarchy:
 
 // Parent.js
+
 export default function Parent() {
   const message = "Hello from Parent via props!";
   return <Middle message={message} />;
 }
 
 // Middle.js
+
 export default function Middle({ message }) {
   // Middle does NOT use the message
   return <DeepChild message={message} />;
 }
 
 // DeepChild.js
+
 export default function DeepChild({ message }) {
   return <p>DeepChild got: {message}</p>;
 }
