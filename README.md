@@ -1,78 +1,74 @@
-🌿 React Context APP
+🌿 React Context App
 
-This project is focusing on the useContext hook, Context API, and addressing the problem of props drilling.
-The aim is to demonstrate how global state can be managed cleanly in React without manually passing props between components.
+This project is focusing on mastering the Context API, using the useContext hook, and overcoming the common React issue known as props drilling.
+The application demonstrates how global state can be shared efficiently without passing props manually across multiple components.
 
-The application includes:
+The project includes:
 
-A functional login system
+A working login system
 
 Dark/Light theme switching
 
-API data fetching using Context
+API fetching using Context
 
-Global state updates
+Updating global data
 
 LocalStorage persistence
 
-Multiple context providers
+Multiple contexts
 
-Props drilling example and context-based solution
+Demonstrations of props drilling and its solution
 
-This README gives a full explanation so anyone viewing this repository can understand what the project does.
+This README explains everything in detail so that anyone visiting this repository clearly understands the purpose and implementation of the app.
 
 
 🎬 How to Watch the Demo Video
 
 GitHub cannot preview large MP4 files directly.
 
-To view the assignment demonstration video:
+To view the project demonstration:
 
 Open the folder app_recording
 
-Click React_context_recording.mp4
+Click on React_context_recording.mp4
 
-Then click View raw (top-right)
+Click View raw (top-right corner)
 
-The video will download or stream depending on your browser
+The video will download or play depending on your browser
 
-This shows the entire working example of props drilling, context usage, login system, theme switching, and API integration.
+This video shows all features implemented as part of the assignment.
 
 
 🌐 How to Run This Project
-
-To run this app on your computer:
-
-1️⃣ Install Dependencies
+1️⃣ Install dependencies
 npm install
 
-2️⃣ Start the Development Server
+2️⃣ Start the development server
 npm start
 
 3️⃣ Open your browser and visit:
 
 👉 http://localhost:3000
 
-This is the URL where your React project runs locally.
 
 
 1️⃣ Props Drilling – Theory and Code Explanation
-📌 What is Props Drilling?
+🌟 What is Props Drilling?
 
-Props drilling occurs when data from a parent component must be passed through several intermediate components that do not need the data, only so the deepest component can use it.
+Props drilling happens when data from a parent component must be passed through multiple child components even though some of those components do not need the data.
+This makes the code more complicated, tightly coupled, and less scalable.
 
-This creates:
+🌟 Why is it a problem?
 
-Unnecessary prop chains
+Intermediate components become “data carriers”
 
-Hard-to-maintain code
+Harder to maintain and update large applications
 
-Confusing component trees
+Unnecessary prop chains make the component tree harder to understand
 
-Tightly coupled components
+🌟 Props Drilling Example (Used in This Project)
 
-📌 Props Drilling Code Example (Used in This Project)
-
+The following code demonstrates how data flows unnecessarily through the component hierarchy:
 
 // Parent.js
 export default function Parent() {
@@ -92,55 +88,60 @@ export default function DeepChild({ message }) {
 }
 
 
-In the UI, this is shown in the Props Drilling Example card.
-
-This demonstrates exactly why props drilling is inefficient.
+This artificial passing of props through unused layers clearly illustrates why props drilling is inefficient.
 
 
 2️⃣ Context Setup (Creating Global State)
 
-A dedicated contexts directory contains:
+To avoid props drilling, the Context API was used.
+A dedicated contexts folder was created with the following files:
 
 ✔ UserContext.js
 
-Handles:
+Manages:
 
 Login
 
 Logout
 
-User name and email
+Name
 
-Update user details
+Email
+
+Update user information
 
 ✔ ThemeContext.js
 
-Handles:
+Manages:
 
-Light/Dark theme
+Light & dark mode
 
-Theme toggle logic
+Theme toggling logic
 
 ✔ ApiUserContext.js
 
-Handles:
+Manages:
 
 Fetching API data
 
-Storing fetched user globally
+Storing response globally
 
-These contexts wrap <App /> so all components can access shared data without prop passing.
+All Context Providers wrap <App />, allowing any component to access shared data directly.
 
 
-3️⃣ Using useContext to Access Data in Child Components
+3️⃣ Using useContext in Child Components
 
-Instead of passing props manually, components access global state directly:
+Instead of passing props manually, components access global state using:
 
 const { user } = useAuthContext();
-const { theme } = useTheme();
 
 
-Examples of components using context:
+or
+
+const { theme, toggleTheme } = useTheme();
+
+
+Examples of components that use Context:
 
 Navbar
 
@@ -148,54 +149,55 @@ Profile
 
 Login form
 
-Theme toggle button
+Theme Toggle component
 
-API user display
+API User Display
 
-Context solution example
+Context Solution Example
 
-This replaces props drilling with clean, managed global state access.
+This shows how useContext solves the problem of props drilling.
 
 
 4️⃣ Fetching API Data Using useEffect + Context
 
-Data is fetched from:
+The project fetches user details from:
 
 https://jsonplaceholder.typicode.com/users/1
 
 
-The response is stored globally in ApiUserContext and displayed in:
+The result is stored in ApiUserContext and displayed in:
 
 Navbar (name + email)
 
 Footer (company + city)
 
-No props are used — the data comes entirely through context.
+All components access this data through context, not props.
+
 
 5️⃣ Updating Global Data
 
-A profile interface allows users to update their name.
+The user can update their name through the Profile section.
+When updated:
 
-When the name is updated:
+The name updates globally
 
-The change propagates to all components instantly
+Navbar updates instantly
 
-Navbar updates
+Profile updates instantly
 
-Profile updates
+Deep context example updates instantly
 
-Deep context example updates
-
-This demonstrates global state synchronization.
+This demonstrates real-time global state management.
 
 
 6️⃣ Mini Project – Login Application
 
-The app includes a complete login system:
+A functional login system was created with Context.
 
+Features:
 ✔ Login Form
 
-Takes:
+Accepts:
 
 Name
 
@@ -203,48 +205,43 @@ Email
 
 ✔ Store User in Context
 
-Logged-in user is stored in global state.
+Logged-in user information is globally stored.
 
-✔ Save User in LocalStorage
+✔ Save to LocalStorage
 
-User remains logged in even after refreshing the browser.
+User remains logged in even after refreshing.
 
 ✔ Profile Page
 
-Shows:
-
-User data
-
-Update name option
+Displays user information and includes a name update feature.
 
 ✔ Logout Button
 
 Clears:
 
-Context
+Context data
 
 LocalStorage
 
-This completes the mandatory mini project requirements.
+This completes all mandatory mini project requirements.
 
 
-7️⃣ Bonus Features Implemented
+7️⃣ Bonus Tasks – Completed
 🌗 Dark / Light Theme Toggle
 
-Switches theme globally using ThemeContext.
+Switch themes globally using ThemeContext.
 
 🧩 Custom Hook: useAuthContext()
 
-A simplified way for components to access user data.
+Simplifies accessing user context.
 
+🔀 Multiple Contexts
 
-🔀 Multiple Contexts Combined
+UserContext, ThemeContext, and ApiUserContext work together seamlessly.
 
-UserContext, ThemeContext, and ApiUserContext work together across the entire app.
+🌍 API Data Displayed in Footer and Navbar
 
-🌍 API Data Displayed in Navbar and Footer
-
-Same API data appears in multiple components using context.
+Demonstrates shared state across components.
 
 
 📁 Folder Structure
@@ -271,20 +268,20 @@ react_context_app/
 
 🎯 Conclusion
 
-This project demonstrates:
+This project successfully demonstrates:
 
 What props drilling is
 
 How Context API solves it
 
-How to manage global state in React
+How to manage global state without prop passing
 
-How to use multiple contexts together
+Combining multiple contexts in one app
 
-How to fetch API data and share it globally
+Fetching external API data using context
 
-How to create a login system using context
+Login system with global user state
 
-How to persist user data with localStorage
+Theme toggling
 
-How to implement theme toggling globally
+LocalStorage persistence
