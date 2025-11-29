@@ -1,4 +1,4 @@
-🌿 React Context API 
+🌿 React Context APP 
 
 This project is focusing on the useContext hook, Context API, and addressing the problem of props drilling.
 The aim is to demonstrate how global state can be managed cleanly in React without manually passing props between components.
